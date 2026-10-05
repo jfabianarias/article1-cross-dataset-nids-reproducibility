@@ -1,0 +1,15 @@
+Supplementary Software S1 — OBS28 reproducibility audit
+Date: 2026-10-05
+
+PASS — canonical archive name: Article1_Supplementary_Code_and_Results.zip
+PASS — README contains clean-start virtual-environment instructions and smoke/full commands.
+PASS — requirements.txt pins every third-party dependency imported by the distributed scripts.
+PASS — config/seeds.json records model seeds 42/52/62/72/82, bootstrap RNG seeds 20261004 and 20261005, 10,000 bootstrap replicates, LODO cap 25,000, and CORAL epsilon 1e-3.
+PASS — scripts are path-portable relative to the archive root.
+PASS — smoke_test.py was executed from outside the package working directory, opened all four processed .npz partitions, and fitted Random Forest, XGBoost, Linear SVM, and MLP successfully.
+PASS — regenerate_submission_figures_obs24.py regenerated all six manuscript figures at 400 dpi.
+PASS — validate_release.py verifies required files, reference summary values, seed policy, and SHA-256 manifest.
+PASS — run_all.py provides --mode smoke and --mode full and does not overwrite archived manuscript results.
+PASS — CITATION.cff includes the public GitHub repository URL.
+
+DOI status: not assigned. No DOI is claimed until an actual persistent-repository deposition is completed.
