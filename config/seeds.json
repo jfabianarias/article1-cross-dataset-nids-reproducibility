@@ -1,0 +1,8 @@
+{
+  "model_seeds": [42, 52, 62, 72, 82],
+  "direct_transfer_bootstrap_seed": 20261004,
+  "coral_bootstrap_seed": 20261005,
+  "bootstrap_replicates": 10000,
+  "lodo_per_source_cap": 25000,
+  "coral_regularization_epsilon": 0.001
+}
