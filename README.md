@@ -79,9 +79,13 @@ Datasets: UNSW-NB15, CICIDS2017, BoT-IoT, and TON_IoT.
 
 The primary benchmark preserves source class prevalence and does not use class weighting. Target-derived scaling statistics, target-label feature selection, target threshold tuning, and target-domain refitting are prohibited in the source-only protocol. CORAL is reported separately because it intentionally uses unlabeled target covariates.
 
+## Dataset licensing
+
+Dataset-specific use and redistribution terms are documented in [DATASET_LICENSES.md](DATASET_LICENSES.md). CIC explicitly permits redistribution of CIC datasets with citation. The official UNSW-NB15, BoT-IoT, and TON_IoT pages grant free academic use but do not explicitly grant redistribution; consequently, derived processed partitions from those datasets are not published in this public repository without separate written permission.
+
 ## Data note
 
-Raw public datasets are not redistributed. The complete canonical S1 ZIP contains the corrected harmonized processed partitions used for the final experiments. The ZIP is the recommended artifact for exact reproduction and archival deposit.
+Raw public datasets are not redistributed. The internally validated S1 archive contains the corrected harmonized processed partitions used for the final experiments. Because redistribution is not explicitly authorised by the published UNSW-NB15, BoT-IoT, and TON_IoT terms, that internal archive must not be publicly deposited unchanged. The public release follows the policy in DATASET_LICENSES.md.
 
 ## DOI / archival status
 
