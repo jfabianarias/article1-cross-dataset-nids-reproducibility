@@ -1,0 +1,12 @@
+cff-version: 1.2.0
+message: "If you use this supplementary software, please cite the accompanying article and the archived software release when a DOI is assigned."
+title: "Cross-Dataset Generalization of Machine-Learning Intrusion Detection Across Heterogeneous Conventional and Internet-of-Things Network Environments: Supplementary Software S1"
+type: software
+authors:
+  - given-names: Jaime
+    family-names: Arias Aguilar
+  - given-names: Everton
+    family-names: Gomede
+version: "Block 10 / OBS28"
+date-released: 2026-10-05
+repository-code: "https://github.com/jfabianarias/article1-cross-dataset-nids-reproducibility"
