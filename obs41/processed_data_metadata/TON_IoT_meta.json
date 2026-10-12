@@ -1,0 +1,8 @@
+{
+  "partition": "Experiment 4 deterministic 20% within type then 70/30 stratified by type",
+  "mapping": {"duration":"duration","src_pkts":"src_pkts","dst_pkts":"dst_pkts","src_bytes":"src_ip_bytes","dst_bytes":"dst_ip_bytes"},
+  "train_rows": 26665, "test_rows": 11429,
+  "train_attack": 20780, "train_benign": 5885,
+  "test_attack": 8906, "test_benign": 2523,
+  "features": ["log_duration_s","log_src_pkts","log_dst_pkts","log_src_bytes","log_dst_bytes","log_src_mean_pkt","log_dst_mean_pkt","log_packets_per_sec","log_bytes_per_sec","src_packet_ratio","src_byte_ratio"]
+}

@@ -1,0 +1,9 @@
+{
+  "partition": "Experiment 2 clean/hash-dedup/hash%5 sample then 70/30 stratified by binary label",
+  "unique_clean_hashes": 2520798, "sample_rows": 503350,
+  "mapping": {"duration":"Flow Duration / 1e6","src_pkts":"Total Fwd Packets","dst_pkts":"Total Backward Packets","src_bytes":"Total Length of Fwd Packets","dst_bytes":"Total Length of Bwd Packets"},
+  "train_rows": 352345, "test_rows": 151005,
+  "train_attack": 59656, "train_benign": 292689,
+  "test_attack": 25567, "test_benign": 125438,
+  "features": ["log_duration_s","log_src_pkts","log_dst_pkts","log_src_bytes","log_dst_bytes","log_src_mean_pkt","log_dst_mean_pkt","log_packets_per_sec","log_bytes_per_sec","src_packet_ratio","src_byte_ratio"]
+}

@@ -1,0 +1,12 @@
+common_feature,UNSW_NB15,CICIDS2017,BoT_IoT,TON_IoT
+duration_s,dur,Flow Duration / 1e6,dur,duration
+src_pkts,spkts,Total Fwd Packets,spkts,src_pkts
+dst_pkts,dpkts,Total Backward Packets,dpkts,dst_pkts
+src_bytes,sbytes,Total Length of Fwd Packets,sbytes,src_bytes
+dst_bytes,dbytes,Total Length of Bwd Packets,dbytes,dst_bytes
+src_mean_pkt,derived src_bytes/src_pkts,derived,derived,derived
+dst_mean_pkt,derived dst_bytes/dst_pkts,derived,derived,derived
+packets_per_sec,derived total_pkts/duration,derived,derived,derived
+bytes_per_sec,derived total_bytes/duration,derived,derived,derived
+src_packet_ratio,derived src_pkts/total_pkts,derived,derived,derived
+src_byte_ratio,derived src_bytes/total_bytes,derived,derived,derived
