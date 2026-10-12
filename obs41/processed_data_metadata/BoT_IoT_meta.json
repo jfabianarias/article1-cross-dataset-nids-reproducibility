@@ -1,0 +1,9 @@
+{
+  "partition": "cross-dataset harmonized protocol: all benign + deterministic hash%5 attacks using common raw fields, deduplicate on common raw fields, 70/30 stratified binary",
+  "sample_rows": 132757, "sample_attack": 132351, "sample_benign": 406,
+  "train_rows": 92929, "test_rows": 39828,
+  "train_attack": 92645, "train_benign": 284,
+  "test_attack": 39706, "test_benign": 122,
+  "mapping": {"duration":"dur","src_pkts":"spkts","dst_pkts":"dpkts","src_bytes":"sbytes","dst_bytes":"dbytes"},
+  "features": ["log_duration_s","log_src_pkts","log_dst_pkts","log_src_bytes","log_dst_bytes","log_src_mean_pkt","log_dst_mean_pkt","log_packets_per_sec","log_bytes_per_sec","src_packet_ratio","src_byte_ratio"]
+}
