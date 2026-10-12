@@ -1,96 +1,94 @@
 # Cross-Dataset NIDS Reproducibility Package
 
-Supplementary Software S1 for the article **“Cross-Dataset Generalization of Machine-Learning Intrusion Detection Across Heterogeneous Conventional and Internet-of-Things Network Environments”** by Jaime Arias Aguilar and Everton Gomede.
+Reproducibility repository for the manuscript:
 
-Repository: https://github.com/jfabianarias/article1-cross-dataset-nids-reproducibility
-
-This repository accompanies the manuscript and provides the executable reproducibility material for the final Block 10 / OBS28 analysis. The canonical archive is named `Article1_Supplementary_Code_and_Results.zip`.
-
-## Reproducibility contents
-
-- `scripts/`: path-portable analysis, validation, figure-regeneration, and orchestration scripts.
-- `results/`: exact machine-readable outputs used by the manuscript.
-- `config/seeds.json`: authoritative seeds and protocol constants.
-- `requirements.txt`: pinned Python dependencies.
-- `processed_data/`: metadata for the harmonized datasets; the complete canonical ZIP contains the processed `.npz` partitions.
-- `audits/`: consistency, seed, figure, bibliographic, and methodological audit files.
-- `CITATION.cff`: citation metadata prepared for GitHub/Zenodo.
-- `MANIFEST_SHA256.csv`: integrity manifest for the canonical S1 archive.
-
-## Clean-start environment
-
-Validated with **Python 3.13.5**.
-
-```bash
-python -m venv .venv
-# Linux/macOS
-source .venv/bin/activate
-# Windows PowerShell: .venv\Scripts\Activate.ps1
-python -m pip install --upgrade pip
-python -m pip install -r requirements.txt
-```
-
-Pinned dependencies: NumPy 2.3.5, pandas 2.2.3, scikit-learn 1.8.0, XGBoost 3.1.3, SciPy 1.17.0, Matplotlib 3.10.8, and Pillow 12.3.0.
-
-## Fast validation
-
-From the extracted canonical archive:
-
-```bash
-python scripts/validate_release.py
-python scripts/smoke_test.py
-```
-
-Expected final lines:
-
-```text
-VALIDATION PASSED
-SMOKE TEST PASSED
-```
-
-A one-command smoke check is also available:
-
-```bash
-python scripts/run_all.py --mode smoke
-```
-
-## Full reproduction
-
-```bash
-python scripts/run_all.py --mode full
-```
-
-Full mode writes fresh outputs under `results/reproduced/` and executes the five-seed benchmark, direct-transfer uncertainty analysis, normalized metrics, feature-stability analysis, LODO control, CORAL-XGBoost control, class-balanced sensitivity analysis, and figure regeneration. It does not overwrite the archived manuscript results.
-
-## Seeds and fixed protocol
-
-Authoritative values are stored in `config/seeds.json`:
-
-- Model seeds: **42, 52, 62, 72, 82**
-- Direct-transfer bootstrap RNG seed: **20261004**
-- CORAL interval RNG seed: **20261005**
-- Bootstrap replicates: **10,000**
-- LODO cap: **25,000** training flows from each eligible source domain per seed
-- CORAL regularization: **1e-3**
-
-## Final benchmark scope
+**Cross-Dataset Generalization of Intrusion Detection: Feature Stability and Transfer Across Four Network Benchmarks**
 
 Datasets: UNSW-NB15, CICIDS2017, BoT-IoT, and TON_IoT.
 
-The primary benchmark preserves source class prevalence and does not use class weighting. Target-derived scaling statistics, target-label feature selection, target threshold tuning, and target-domain refitting are prohibited in the source-only protocol. CORAL is reported separately because it intentionally uses unlabeled target covariates.
+This repository contains the public, license-safe materials supporting the **OBS41** revision. Raw third-party datasets and restricted derived partitions are not redistributed. Exact checksums, reconstruction metadata, scripts, seeds, and release artifacts are provided so the analyses can be audited and recreated where source licenses permit.
 
-## Dataset licensing
+## OBS41 methodological additions
 
-Dataset-specific use and redistribution terms are documented in [DATASET_LICENSES.md](DATASET_LICENSES.md). CIC explicitly permits redistribution of CIC datasets with citation. The official UNSW-NB15, BoT-IoT, and TON_IoT pages grant free academic use but do not explicitly grant redistribution; consequently, derived processed partitions from those datasets are not published in this public repository without separate written permission.
+Relative to OBS40, OBS41 adds:
 
-## Data note
+- paired per-flow target resampling for sampling uncertainty;
+- Wilson intervals for class-specific boundary rates;
+- external ROC-AUC with explicit score orientation and decision thresholds;
+- budget-matched LODO controls;
+- class-weighted, undersampled, and size-matched balancing controls;
+- source-only model-selection and MLP convergence diagnostics;
+- stricter grouped/temporal within-domain partition sensitivity;
+- five-base-feature, full 11-feature, and direction-invariant representation ablations;
+- inductive CORAL sensitivity with untouched target evaluation;
+- feature-by-dataset AUC uncertainty and reversal-threshold sensitivity;
+- comparable attack-family sensitivity analyses;
+- operational false-alert and prevalence interpretation;
+- explicit separation of training-seed variability from target-sample uncertainty.
 
-Raw public datasets are not redistributed. The internally validated S1 archive contains the corrected harmonized processed partitions used for the final experiments. Because redistribution is not explicitly authorised by the published UNSW-NB15, BoT-IoT, and TON_IoT terms, that internal archive must not be publicly deposited unchanged. The public release follows the policy in DATASET_LICENSES.md.
+## Repository structure
 
-## DOI / archival status
+- `scripts/`: legacy reproducibility scripts retained from earlier revisions.
+- `obs41/scripts/`: scripts introduced for OBS41.
+- `obs41/results/`: machine-readable OBS41 results suitable for public redistribution.
+- `obs41/processed_data_metadata/`: dataset mapping and partition metadata.
+- `obs41/reproducibility/`: environment and checksum manifests.
+- `config/`: protocol constants and seeds.
+- `requirements.txt`: pinned Python dependencies.
+- `DATASET_LICENSES.md`: redistribution policy for the four source datasets.
+- `CITATION.cff`: citation metadata for the software release.
 
-This repository is prepared for a GitHub release and Zenodo archival deposit. **No DOI is claimed until an actual Zenodo (or equivalent) deposition is completed.** Once assigned, the DOI will be added to this README, `CITATION.cff`, and the manuscript Data and Code Availability section.
+## Environment
 
-## Release status
+Validated with Python 3.13.5.
 
-OBS28 reproducibility audit completed: clean-start instructions, pinned requirements, explicit seed configuration, portable scripts, smoke validation, full orchestration workflow, citation metadata, and integrity checks are included.
+Key versions:
+- NumPy 2.3.5
+- pandas 2.2.3
+- SciPy 1.17.0
+- scikit-learn 1.8.0
+- XGBoost 3.1.3
+- Matplotlib 3.10.8
+
+Primary model seeds: **42, 52, 62, 72, 82**.
+
+## Data and licensing
+
+The public repository does **not** redistribute the raw datasets. The published dataset pages and license notes should be consulted before redistribution.
+
+Where exact processed arrays cannot be redistributed, OBS41 provides:
+- raw-file checksums;
+- harmonization metadata;
+- sampling and split rules;
+- seeds;
+- reconstruction scripts;
+- stable machine-readable result tables.
+
+See `DATASET_LICENSES.md` and `obs41/reproducibility/SHA256_DATA_MANIFEST_OBS41.csv`.
+
+## Prediction artifacts
+
+The full release archive contains per-flow prediction artifacts used for paired uncertainty and ROC-AUC diagnostics. These store, where applicable, the true label, hard prediction, continuous score, score orientation, and threshold metadata.
+
+Large binary prediction artifacts are distributed as release assets rather than duplicated as ordinary Git objects.
+
+## Archival status
+
+The repository is being prepared for the immutable **v1.0.0** software release corresponding to OBS41.
+
+**No DOI is claimed until the Zenodo archival deposit actually exists.**
+
+After publication of the GitHub release and Zenodo deposition, this README and the manuscript Data and Code Availability statement should be updated with:
+- GitHub release tag;
+- exact release commit SHA;
+- Zenodo DOI.
+
+## Reproducibility scope
+
+The primary cross-dataset benchmark uses five training seeds. Sampling uncertainty and training-seed variability are reported separately.
+
+Some new diagnostics requested during revision are intentionally scoped to **XGBoost** and should not be generalized to every classifier family. CORAL conclusions are limited to the tested XGBoost-CORAL configurations.
+
+## Citation
+
+Use the metadata in `CITATION.cff`. Once the Zenodo DOI exists, cite both the accompanying article and the archived software release.
