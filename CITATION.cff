@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use this supplementary software, please cite the accompanying article and the archived software release once the DOI is assigned."
+message: "If you use this supplementary software, please cite the accompanying article and the archived software release."
 title: "Cross-Dataset Generalization of Intrusion Detection: Feature Stability and Transfer Across Four Network Benchmarks — Reproducibility Software"
 type: software
 authors:
@@ -7,8 +7,10 @@ authors:
     family-names: Arias Aguilar
   - given-names: Everton
     family-names: Gomede
-version: "1.0.0"
+version: "1.0.1"
+date-released: 2026-10-13
 repository-code: "https://github.com/jfabianarias/article1-cross-dataset-nids-reproducibility"
+doi: "10.5281/zenodo.23327656"
 keywords:
   - intrusion detection
   - cross-dataset generalization
