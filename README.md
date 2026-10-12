@@ -6,7 +6,7 @@ Reproducibility repository for the manuscript:
 
 Datasets: UNSW-NB15, CICIDS2017, BoT-IoT, and TON_IoT.
 
-This repository contains the public, license-safe reproducibility materials for software release **v1.0.0**. Raw third-party datasets and restricted derived partitions are not redistributed. Exact checksums, reconstruction metadata, scripts, seeds, and release artifacts are provided so that the analyses can be audited and recreated where source licenses permit.
+This repository contains the public, license-safe reproducibility materials for software release **v1.0.1**. Raw third-party datasets and restricted derived partitions are not redistributed. Exact checksums, reconstruction metadata, scripts, seeds, and release artifacts are provided so that the analyses can be audited and recreated where source licenses permit.
 
 ## Methodological coverage
 
@@ -61,13 +61,13 @@ See `DATASET_LICENSES.md` and `study_artifacts/reproducibility/SHA256_DATA_MANIF
 
 The full release archive contains per-flow prediction artifacts used for paired uncertainty and ROC-AUC diagnostics. Large binary prediction artifacts are distributed as release assets rather than duplicated as ordinary Git objects.
 
-## Archival status
+## Archival release
 
-The repository is being prepared for the immutable **v1.0.0** software release.
+- GitHub release: **v1.0.1**
+- Zenodo version DOI: **10.5281/zenodo.23327656**
+- Zenodo concept DOI (all versions): **10.5281/zenodo.23327655**
 
-**No DOI is claimed until the Zenodo archival deposit actually exists.**
-
-After publication of the GitHub release and Zenodo deposition, this README and the manuscript Data and Code Availability statement should be updated with the GitHub release tag, exact release commit SHA, and Zenodo DOI.
+For exact reproducibility, cite the version-specific DOI above.
 
 ## Reproducibility scope
 
@@ -77,4 +77,4 @@ Some diagnostic controls are intentionally scoped to **XGBoost** and should not 
 
 ## Citation
 
-Use the metadata in `CITATION.cff`. Once the Zenodo DOI exists, cite both the accompanying article and the archived software release.
+Use the metadata in `CITATION.cff` and cite the archived software release at DOI **10.5281/zenodo.23327656**.
