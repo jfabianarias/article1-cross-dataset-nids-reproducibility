@@ -64,6 +64,7 @@ The full release archive contains per-flow prediction artifacts used for paired 
 ## Archival release
 
 - GitHub release: **v1.0.1**
+- Release commit: **1d1a017334dd74f7f10fb91ff6faf83aa2ec64a3**
 - Zenodo version DOI: **10.5281/zenodo.23327656**
 - Zenodo concept DOI (all versions): **10.5281/zenodo.23327655**
 
