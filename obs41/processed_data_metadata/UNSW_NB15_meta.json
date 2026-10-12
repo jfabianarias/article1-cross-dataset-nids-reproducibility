@@ -1,0 +1,8 @@
+{
+  "partition": "official train/test",
+  "mapping": {"duration":"dur","src_pkts":"spkts","dst_pkts":"dpkts","src_bytes":"sbytes","dst_bytes":"dbytes"},
+  "train_rows": 175341, "test_rows": 82332,
+  "train_attack": 119341, "train_benign": 56000,
+  "test_attack": 45332, "test_benign": 37000,
+  "features": ["log_duration_s","log_src_pkts","log_dst_pkts","log_src_bytes","log_dst_bytes","log_src_mean_pkt","log_dst_mean_pkt","log_packets_per_sec","log_bytes_per_sec","src_packet_ratio","src_byte_ratio"]
+}
