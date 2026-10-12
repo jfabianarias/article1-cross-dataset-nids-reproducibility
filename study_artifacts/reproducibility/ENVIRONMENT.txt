@@ -1,4 +1,4 @@
-OBS41 reproducibility environment
+Cross-Dataset NIDS reproducibility environment
 Generated UTC: 2026-10-12T21:03:47Z
 Platform: Linux x86_64
 CPU: Intel Xeon Platinum 8370C @ 2.80 GHz
