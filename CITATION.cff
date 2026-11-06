@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "Cite the accompanying article and the version-specific archival DOI assigned by Zenodo to the v1.1.0 release. Do not use the previous version DOI."
+message: "Cite the v1.1.0 Zenodo version DOI for this reproducibility software and the accompanying manuscript."
 title: "Cross-Dataset Generalization of Intrusion Detection: Feature Stability and Transfer Across Four Network Benchmarks — Reproducibility Software"
 type: software
 authors:
@@ -8,6 +8,8 @@ authors:
   - given-names: Everton
     family-names: Gomede
 version: "1.1.0"
+date-released: 2026-11-06
+doi: "10.5281/zenodo.24014711"
 repository-code: "https://github.com/jfabianarias/article1-cross-dataset-nids-reproducibility"
 keywords:
   - intrusion detection
