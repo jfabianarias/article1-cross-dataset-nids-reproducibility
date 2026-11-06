@@ -1,7 +1,6 @@
 # Cross-Dataset NIDS Reproducibility Package
 
-> **v1.1.0 REVIEW BRANCH (not yet released).** The new publicly shareable results, Figure 2, validation scripts, and SHA-256 manifests are under [`v1.1.0-public-artifacts/`](v1.1.0-public-artifacts/). Run `cd v1.1.0-public-artifacts && python scripts/verify_current_release.py` to validate the checked-in public package. The historical release information and version-specific DOI described below apply to **v1.0.1**, not to this review candidate. No v1.1.0 DOI has been issued. Private flow predictions and restricted derived datasets are excluded.
-
+> **Current archival release: [v1.1.0](https://github.com/jfabianarias/article1-cross-dataset-nids-reproducibility/releases/tag/v1.1.0)** (2026-11-06). **Zenodo version DOI: [10.5281/zenodo.24014711](https://doi.org/10.5281/zenodo.24014711)**. Validated public results, the five-seed Figure 2, verification scripts and SHA-256 manifests are available under [`v1.1.0-public-artifacts/`](v1.1.0-public-artifacts/). To validate the public artifacts, run `cd v1.1.0-public-artifacts && python scripts/verify_current_release.py`. The full Overleaf supplementary ZIP is attached to the release; private per-flow predictions and restricted derived datasets are not public.
 
 Reproducibility repository for the manuscript:
 
@@ -9,7 +8,7 @@ Reproducibility repository for the manuscript:
 
 Datasets: UNSW-NB15, CICIDS2017, BoT-IoT, and TON_IoT.
 
-This repository contains the public, license-safe reproducibility materials for software release **v1.0.1**. Raw third-party datasets and restricted derived partitions are not redistributed. Exact checksums, reconstruction metadata, scripts, seeds, and release artifacts are provided so that the analyses can be audited and recreated where source licenses permit.
+This repository contains the public, license-safe reproducibility materials for software release **v1.1.0**. Raw third-party datasets and restricted derived partitions are not redistributed. Exact checksums, reconstruction metadata, scripts, seeds, and release artifacts are provided so that the analyses can be audited and recreated where source licenses permit.
 
 ## Methodological coverage
 
@@ -62,16 +61,16 @@ See `DATASET_LICENSES.md` and `study_artifacts/reproducibility/SHA256_DATA_MANIF
 
 ## Prediction artifacts
 
-The full release archive contains per-flow prediction artifacts used for paired uncertainty and ROC-AUC diagnostics. Large binary prediction artifacts are distributed as release assets rather than duplicated as ordinary Git objects.
+The 320 per-flow prediction arrays supporting paired uncertainty analyses are retained privately and are **not** included in the public GitHub repository, release asset, or Zenodo record. The public materials include aggregate results, scripts, and SHA-256 provenance manifests; access to licensed source datasets is required for independent full reruns.
 
 ## Archival release
 
-- GitHub release: **v1.0.1**
-- Release commit: **1d1a017334dd74f7f10fb91ff6faf83aa2ec64a3**
-- Zenodo version DOI: **10.5281/zenodo.23327656**
-- Zenodo concept DOI (all versions): **10.5281/zenodo.23327655**
+- **Latest GitHub release:** [v1.1.0](https://github.com/jfabianarias/article1-cross-dataset-nids-reproducibility/releases/tag/v1.1.0)
+- **Zenodo v1.1.0 version DOI:** [10.5281/zenodo.24014711](https://doi.org/10.5281/zenodo.24014711)
+- **Zenodo concept DOI (all versions):** [10.5281/zenodo.23327655](https://doi.org/10.5281/zenodo.23327655)
+- Previous v1.0.1 version DOI: [10.5281/zenodo.23327656](https://doi.org/10.5281/zenodo.23327656)
 
-For exact reproducibility, cite the version-specific DOI above.
+For exact reproducibility, cite the version-specific DOI of the version used. These README and CITATION.cff updates were committed **after** the v1.1.0 tag was published, so the archived v1.1.0 source snapshot remains unchanged.
 
 ## Reproducibility scope
 
@@ -81,4 +80,4 @@ Some diagnostic controls are intentionally scoped to **XGBoost** and should not 
 
 ## Citation
 
-Use the metadata in `CITATION.cff` and cite the archived software release at DOI **10.5281/zenodo.23327656**.
+Use the metadata in `CITATION.cff` and cite the v1.1.0 archived software release at DOI **10.5281/zenodo.24014711**.
