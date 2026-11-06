@@ -1,5 +1,8 @@
 # Cross-Dataset NIDS Reproducibility Package
 
+> **v1.1.0 REVIEW BRANCH (not yet released).** The new publicly shareable results, Figure 2, validation scripts, and SHA-256 manifests are under [`v1.1.0-public-artifacts/`](v1.1.0-public-artifacts/). Run `cd v1.1.0-public-artifacts && python scripts/verify_current_release.py` to validate the checked-in public package. The historical release information and version-specific DOI described below apply to **v1.0.1**, not to this review candidate. No v1.1.0 DOI has been issued. Private flow predictions and restricted derived datasets are excluded.
+
+
 Reproducibility repository for the manuscript:
 
 **Cross-Dataset Generalization of Intrusion Detection: Feature Stability and Transfer Across Four Network Benchmarks**
