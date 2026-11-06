@@ -1,0 +1,25 @@
+{
+  "date": "2026-11-06",
+  "status": "LOCAL_RELEASE_CANDIDATE_NOT_PUBLISHED",
+  "private_npz_total": 320,
+  "private_files_hashes_matching_corrected_manifest": 320,
+  "historical_public_manifest_mismatches_corrected": 20,
+  "confusion_matrices_exact": 320,
+  "positional_alignment": "PASS",
+  "five_seed_direction_bootstrap_csv_exact_bytes": true,
+  "five_seed_directions": 16,
+  "direction_resamples": 2000,
+  "model_cell_bootstrap_csv_exact_bytes": true,
+  "external_model_cells": 48,
+  "model_cell_resamples": 20000,
+  "nominal_below_half": 25,
+  "bonferroni_below_half": 24,
+  "pdf_recompiled_pages": 96,
+  "latex_undefined_reference_or_citation_count_after_third_pass": 0,
+  "limitations": [
+    "No bitwise historical RNG bootstrap draw identity",
+    "No host/session-cluster robust intervals",
+    "Some historical supplementary scripts use environment-specific absolute paths",
+    "Not published to GitHub, no DOI"
+  ]
+}

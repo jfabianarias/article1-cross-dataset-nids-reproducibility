@@ -1,0 +1,11 @@
+{
+  "replicates": 2000,
+  "rng_seed": 20261105,
+  "method": "class-stratified nonparametric flow bootstrap; 20 matched predictor votes per direction",
+  "n_files": 320,
+  "n_directions": 16,
+  "python": "3.13.5",
+  "numpy": "2.3.5",
+  "pandas": "2.2.3",
+  "platform": "Linux-6.18.57-x86_64-with-glibc2.41"
+}
