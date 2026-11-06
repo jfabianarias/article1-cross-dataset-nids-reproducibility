@@ -1,0 +1,1 @@
+Priority 2 Observation 6: 168 original conditions + 144 extra split conditions = 312 distinct evaluations. Five-seed fixed raw/ridge=1e-3 subset contains 180 entries. Read supplementary/OBS6_FIVE_SEEDS_SCIENTIFIC_AUDIT.md for caveats. Datasets are intentionally not redistributed.
