@@ -1,28 +1,42 @@
 #!/usr/bin/env python3
-"""Validate the *current* public release candidate without requiring private NPZ files."""
+"""Verify the public v1.1.0 artifacts against SHA256SUMS.txt; no private data needed."""
 from pathlib import Path
-import argparse,csv,hashlib,sys
-root=Path(__file__).resolve().parent
-p=argparse.ArgumentParser(description=__doc__)
-p.add_argument('--root',type=Path,default=root)
-p.add_argument('--manifest',default='SHA256_CURRENT_RELEASE.csv')
-a=p.parse_args();base=a.root.resolve();manifest=base/a.manifest
-if not manifest.is_file():sys.exit('MISSING current manifest: '+str(manifest))
-rows=list(csv.DictReader(manifest.open(newline='',encoding='utf-8')))
-errors=[];observed=set()
-for row in rows:
-    name=row['path'];f=(base/name).resolve()
-    if name in observed:errors.append('DUPLICATE '+name);continue
-    observed.add(name)
-    if not f.is_relative_to(base) or not f.is_file():errors.append('MISSING/UNSAFE '+name);continue
-    if f.stat().st_size!=int(row['size_bytes']):errors.append('SIZE '+name);continue
-    if hashlib.file_digest(f.open('rb'),'sha256').hexdigest()!=row['sha256']:errors.append('SHA256 '+name)
-# No private prediction archive/data allowed in public release.
-for f in base.rglob('*'):
-    if f.is_file() and f.suffix.lower() in {'.npz','.npy','.parquet','.pkl','.joblib','.pem','.key'}:
-        errors.append('PRIVATE_OR_BINARY_REVIEW '+str(f.relative_to(base)))
-    if f.is_file() and f.name not in {a.manifest} and str(f.relative_to(base)) not in observed:
-        errors.append('UNLISTED '+str(f.relative_to(base)))
-print(f'Current release candidate: {len(rows)} files checked; errors={len(errors)}')
-for e in errors[:60]:print(e)
+import argparse
+import hashlib
+import sys
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('--root', type=Path, default=Path(__file__).resolve().parents[1])
+args = parser.parse_args()
+root = args.root.resolve()
+manifest = root / 'SHA256SUMS.txt'
+if not manifest.is_file():
+    sys.exit(f'MISSING {manifest}')
+errors = []
+listed = set()
+for line_number, line in enumerate(manifest.read_text(encoding='utf-8').splitlines(), 1):
+    try:
+        digest, relpath = line.split('  ', 1)
+        assert len(digest) == 64 and all(c in '0123456789abcdef' for c in digest)
+        f = (root / relpath).resolve()
+        assert f.is_relative_to(root) and relpath not in listed
+        listed.add(relpath)
+        assert f.is_file()
+        with f.open('rb') as stream:
+            actual = hashlib.file_digest(stream, 'sha256').hexdigest()
+        if actual != digest:
+            errors.append(f'HASH MISMATCH {relpath}')
+    except (AssertionError, ValueError, OSError):
+        errors.append(f'MALFORMED OR MISSING entry at line {line_number}: {line!r}')
+for f in root.rglob('*'):
+    if not f.is_file():
+        continue
+    rel = f.relative_to(root).as_posix()
+    if f.suffix.lower() in {'.npz', '.npy', '.parquet', '.pkl', '.joblib', '.pem', '.key'}:
+        errors.append(f'PRIVATE/BINARY REVIEW {rel}')
+    if rel not in listed and rel != 'SHA256SUMS.txt':
+        errors.append(f'UNLISTED {rel}')
+print(f'Public release validation: {len(listed)} files checked; errors={len(errors)}')
+for error in errors[:50]:
+    print(error)
 sys.exit(bool(errors))
