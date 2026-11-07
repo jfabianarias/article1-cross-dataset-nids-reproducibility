@@ -1,0 +1,75 @@
+name: NIDS Obs4 clean public reproducibility
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/nids-obs4-clean-env.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reproducibility:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Python 3.13 on clean Ubuntu
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Fresh package installation and dependency check
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install numpy==2.3.5 pandas==2.2.3 scipy==1.17.0 scikit-learn==1.8.0 xgboost==3.1.3 matplotlib==3.10.8 joblib==1.5.3 threadpoolctl==3.6.0 pillow==12.3.0
+          python -m pip check
+          python -m pip freeze > clean-pip-freeze.txt
+      - name: Reproduce public results from SHA-256 pinned release asset
+        env:
+          MPLBACKEND: Agg
+          OPENBLAS_NUM_THREADS: '1'
+          OMP_NUM_THREADS: '1'
+          MKL_NUM_THREADS: '1'
+          PYTHONHASHSEED: '0'
+        run: |
+          python - <<'PY'
+          import hashlib,subprocess,sys,urllib.request,zipfile
+          from pathlib import Path
+          url='https://github.com/jfabianarias/article1-cross-dataset-nids-reproducibility/releases/download/v1.1.0/NIDS_Overleaf_v1.1.0.zip'
+          expected='88bd9470512eda3bc920e8ac8d227024f7abca4f8ca090eb15d7063f8bd851ba'
+          pkg=Path('v1.1.0.zip')
+          urllib.request.urlretrieve(url,pkg)
+          assert hashlib.sha256(pkg.read_bytes()).hexdigest()==expected, 'Release hash differs'
+          root=Path('public').resolve();root.mkdir()
+          with zipfile.ZipFile(pkg) as z:
+              assert z.testzip() is None
+              for name in z.namelist():
+                  assert not name.startswith('/') and '..' not in Path(name).parts
+              z.extractall(root)
+          subprocess.run([sys.executable,str(root/'verify_current_release.py'),'--root',str(root)],check=True)
+          f=root/'supplementary/P3O2_Regenerated_2026-11-05/regenerate_and_audit.py'
+          s=f.read_text()
+          old="if 'lodo' in f.name.lower() or 'pool' in f.name.lower():"
+          replacement="if f.is_file() and ('lodo' in f.name.lower() or 'pool' in f.name.lower()):"
+          assert s.count(old)==1,'Patch not applicable to expected source'
+          f.write_text(s.replace(old,replacement))
+          subprocess.run([sys.executable,str(f)],check=True)
+          golden={
+              'Table_P3O2_48_transfer_cells.csv':'f52ade7b6cdd9ada4f5564c04c66460da1e8536d6808247500e9f0516390589b',
+              'Table_P3O2_12_directions.csv':'89fef74c7d71743070389da3c61fe821b5ea2ce89670c378cf7c91762d7fd37e',
+              'Table_P3O2_model_intra_external.csv':'c75f2ce56d8c797ae17e5ed58c5e1855e0c9f875db24cc15aea75c4169cd007a',
+              'regenerated_all_240_external_metrics.csv':'bbd75173a0b3af3496ec1b9b382e6e339ccc85d35f2d8812c11ae7d755e1e92d'}
+          for name,digest in golden.items():
+              got=hashlib.sha256((f.parent/name).read_bytes()).hexdigest()
+              assert got==digest, f'{name}: {got} != {digest}'
+              print('EXACT',name)
+          print('PASS: fresh install, 608-file manifest, four numerical tables')
+          PY
+      - name: Save exact installed versions
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: nids-obs4-clean-install-dependencies
+          path: clean-pip-freeze.txt
+          if-no-files-found: ignore
